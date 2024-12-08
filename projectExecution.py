@@ -52,7 +52,7 @@ y_test_scaled = scaler.transform(y_test_transformed.reshape(-1, 1)).flatten()
 
 
 # Training the model
-history = model.train(X_train_scaled, y_train_scaled, validation_split=0.2, epochs=10, batch_size=64)
+history = model.train(X_train_scaled, y_train_scaled, validation_split=0.2, epochs=50, batch_size=64)
 
 # Predict on test data, then unscaling and untransforming it to obtain "proper" predictions
 predictions = model.predict(X_test_scaled)
@@ -65,7 +65,7 @@ ff_predictions = pd.read_csv('data/predictions/fama_french_predictions.csv')
 
 
 merged_df = pd.merge(
-    nn_predictions[['date', 'PERMNO', 'TICKER', 'XR', 'NN_Predictions']],  
+    test_data[['date', 'PERMNO', 'TICKER', 'XR', 'NN_Predictions']],  
     ff_predictions[['date', 'PERMNO', 'FF_prediction']],                
     on=['date', 'PERMNO'],                                    
     how='inner'                                             

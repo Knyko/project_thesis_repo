@@ -124,7 +124,6 @@ class neuralNetwork:
             verbose=1
         )
 
-        # Visualization of training history
         plt.figure(figsize=(12, 6))
         plt.plot(history.history['loss'], label='Training Loss')
         plt.plot(history.history['val_loss'], label='Validation Loss')
@@ -132,7 +131,10 @@ class neuralNetwork:
         plt.xlabel('Epochs')
         plt.ylabel('Loss')
         plt.legend()
-        plt.show()
+
+        # Save the plot to a file
+        plt.savefig("training_plot")
+        plt.close()
 
         return history
 
